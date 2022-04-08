@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 //@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends BaseTimeEntity{
+public class User{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
