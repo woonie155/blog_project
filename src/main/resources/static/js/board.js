@@ -2,11 +2,14 @@
 let index = {
     init: function () {
         $("#btn-board-write").on("click", () => {
-            this.save();
+            this.save_post();
+        });
+        $("#btn-delete").on("click", () => {
+            this.delete_post();
         });
     },
 
-    save: function () {
+    save_post: function () {
         let data = {
             title: $("#title").val(),
             content: $("#content").val(),
@@ -20,6 +23,21 @@ let index = {
             dataType: "json"
         }).done(function (res) {
             alert("글작성 OK");
+            location.href = "/";
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    },
+    delete_post: function () {
+//        let id = $("#id").text();
+        let id = document.getElementById('postId').value;
+
+        $.ajax({
+            type: "DELETE",
+            dataType: "json",
+            url: "/api/board/"+id,
+        }).done(function (res) {
+            alert("글삭제 OK");
             location.href = "/";
         }).fail(function (error) {
             alert(JSON.stringify(error));

@@ -1,8 +1,13 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/header :: header">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
+
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal" var="principal"/>
+</sec:authorize>
+
 <body>
 <div>
     <div th:replace="fragments/navbar :: navbar" />
@@ -11,23 +16,31 @@
     <div class="container">
         <div class="form-group">
             <h3 th:text="${board.title}"></h3>
+            <input type=hidden id="postId" th:value="${board.id}">
+            <div>
+                글 번호: <span th:id="id"><i th:text="|${board.id},|"></i></span>
+                작성자: <span><i th:text="${board.user.username}"></i></span>
+            </div>
 
-        </div>
-        <hr>
+            <hr>
 
-        <div class="form-group">
-            <div th:utext="${board.content}"></div>
-        </div>
-        <hr>
-        <div class="d-flex justify-content-end">
-            <button class="btn btn-secondary" onclick="history.back()">돌아가기</button>
-            <button id="btn-update" class="btn btn-primary">수정</button>
-            <button id="btn-delete" class="btn btn-danger">삭제</button>
+            <div class="form-group">
+                <div th:utext="${board.content}"></div>
+            </div>
+            <hr>
+
+            <div class="d-flex justify-content-end">
+                <span>
+                    <button class="btn btn-secondary" onclick="history.back()">돌아가기</button>
+                    <button th:if="${#authentication.principal.user.id} == ${board.user.id}" id="btn-update" class="btn btn-primary">수정</button>
+                    <button th:if="${#authentication.principal.user.id} == ${board.user.id}" id="btn-delete" class="btn btn-danger">삭제</button>
+                </span>
+            </div>
         </div>
     </div>
 
     <div th:replace="fragments/footer :: footer" />
-
+    <script src="/js/board.js"></script>
 </div>
 </body>
 </html>

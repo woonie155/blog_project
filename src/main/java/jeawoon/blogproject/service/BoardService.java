@@ -36,4 +36,10 @@ public class BoardService {
             return new IllegalArgumentException("해당 id에 매칭되는 board 없음");
         });
     }
+
+    @Transactional
+    public void board_delete(long id){
+        boardRepository.deleteById(id);
+    }
+
 }
