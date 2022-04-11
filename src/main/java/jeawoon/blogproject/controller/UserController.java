@@ -2,9 +2,11 @@ package jeawoon.blogproject.controller;
 
 import jeawoon.blogproject.entity.RoleType;
 import jeawoon.blogproject.entity.User;
+import jeawoon.blogproject.service.BoardService;
 import jeawoon.blogproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -12,9 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
+    private final BoardService boardService;
 
     @GetMapping({"", "/"})
-    public String main(){
+    public String main(Model model){
+        model.addAttribute("boards", boardService.board_list());
         return "home";
     }
     @GetMapping("/auth/join")

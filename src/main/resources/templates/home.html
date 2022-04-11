@@ -13,23 +13,14 @@
     <div th:replace="fragments/navbar :: navbar" />
 
     <div class = "container">
-        <div class="card" >
+        <div class="card" th:each="board : ${boards}">
             <div class="card-body">
-                <h4 class="card-title">John Doe</h4>
-                <p class="card-text">Some example text.</p>
-                <a href="#" class="btn btn-primary">상세보기</a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">John Doe</h4>
-                <p class="card-text">Some example text.</p>
-                <a href="#" class="btn btn-primary">상세보기</a>
+                <h4 class="card-title" th:text="${board.title}">제목</h4>
+                <p class="card-text" th:utext="${board.content}">내용</p>
+                <a href="#" class="btn btn-primary">내용보기</a>
             </div>
         </div>
     </div>
-
-
 
     <div th:replace="fragments/footer :: footer" />
 </div>
