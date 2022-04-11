@@ -5,6 +5,8 @@ import jeawoon.blogproject.entity.Board;
 import jeawoon.blogproject.entity.User;
 import jeawoon.blogproject.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +27,7 @@ public class BoardService {
         boardRepository.save(board);
     }
 
-    public List<Board> board_list(){
-        return boardRepository.findAll();
+    public Page<Board> board_list(Pageable pageable){
+        return boardRepository.findAll(pageable);
     }
 }

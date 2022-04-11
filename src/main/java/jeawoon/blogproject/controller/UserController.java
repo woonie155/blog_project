@@ -5,6 +5,9 @@ import jeawoon.blogproject.entity.User;
 import jeawoon.blogproject.service.BoardService;
 import jeawoon.blogproject.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +20,8 @@ public class UserController {
     private final BoardService boardService;
 
     @GetMapping({"", "/"})
-    public String main(Model model){
-        model.addAttribute("boards", boardService.board_list());
+    public String main(Model model, @PageableDefault(size=3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+        model.addAttribute("boards", boardService.board_list(pageable));
         return "home";
     }
     @GetMapping("/auth/join")
