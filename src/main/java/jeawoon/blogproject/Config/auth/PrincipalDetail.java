@@ -1,6 +1,7 @@
 package jeawoon.blogproject.Config.auth;
 
 import jeawoon.blogproject.entity.User;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,6 +10,7 @@ import java.util.Collection;
 
 
 //시큐리티 내부 세션저장소이용 위한, 타입변경용클래스
+@Getter
 public class PrincipalDetail implements UserDetails{
 
     private User user;

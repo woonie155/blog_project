@@ -1,4 +1,4 @@
-package jeawoon.blogproject.controller;
+package jeawoon.blogproject.controller.api;
 
 import jeawoon.blogproject.dto.ResponseDto;
 import jeawoon.blogproject.entity.RoleType;

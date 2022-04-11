@@ -1,10 +1,7 @@
 package jeawoon.blogproject.entity;
 
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -13,7 +10,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-@Getter
+@Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Board extends BaseTimeEntity{
@@ -29,7 +26,7 @@ public class Board extends BaseTimeEntity{
     @Lob
     private String content;
 
-    @ColumnDefault("0")
+//    @ColumnDefault("0")
     private int viewCount;
 
     @ManyToOne
