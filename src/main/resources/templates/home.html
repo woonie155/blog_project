@@ -17,7 +17,7 @@
             <div class="card-body">
                 <h4 class="card-title" th:text="${board.title}">제목</h4>
                 <p class="card-text" th:utext="${board.content}">내용</p>
-                <a href="#" class="btn btn-primary">내용보기</a>
+                <a href="#" th:href="@{/board/{id}(id=${board.getId()})}" class="btn btn-primary">글 내용보기</a>
             </div>
         </div>
     </div>

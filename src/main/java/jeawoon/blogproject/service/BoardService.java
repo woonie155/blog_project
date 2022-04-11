@@ -30,4 +30,10 @@ public class BoardService {
     public Page<Board> board_list(Pageable pageable){
         return boardRepository.findAll(pageable);
     }
+
+    public Board board_detail(long id){
+        return boardRepository.findById(id).orElseThrow(()->{
+            return new IllegalArgumentException("해당 id에 매칭되는 board 없음");
+        });
+    }
 }
