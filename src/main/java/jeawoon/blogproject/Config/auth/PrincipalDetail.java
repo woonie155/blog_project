@@ -18,7 +18,7 @@ public class PrincipalDetail implements UserDetails{
         this.user=user;
     }
 
-    @Override
+    @Override //해시적용된
     public String getPassword() {
         return user.getPassword();
     }
