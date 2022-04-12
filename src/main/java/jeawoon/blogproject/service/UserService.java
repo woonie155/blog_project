@@ -26,4 +26,14 @@ public class UserService {
     }
 
 
+    @Transactional
+    public void user_update(User user) {
+        User updateUser = userRepository.findById(user.getId()).orElseThrow(() -> {
+            return new IllegalArgumentException("회원 찾기 에러");
+        });
+
+        updateUser.setPassword(encoder.encode(user.getPassword()));
+        updateUser.setEmail(user.getEmail());
+        //세션도 변경해주기.
+    }
 }
