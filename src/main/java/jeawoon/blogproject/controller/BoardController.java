@@ -20,9 +20,15 @@ public class BoardController {
     }
 
     @GetMapping("/board/{id}")
-    public String board_detail(@PathVariable("id") Long id, Model model){
-        model.addAttribute("board", boardService.board_detail(id));
+    public String post_detail(@PathVariable("id") Long id, Model model){
+        model.addAttribute("board", boardService.post_detail(id));
         return "board/detail";
+    }
+
+    @GetMapping("board/{id}/update")
+    public String post_update(@PathVariable("id") Long id, Model model){
+        model.addAttribute("board", boardService.post_detail(id));
+        return "board/updateForm";
     }
 
 

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,19 +28,29 @@ public class BoardService {
         boardRepository.save(board);
     }
 
-    public Page<Board> board_list(Pageable pageable){
+    public Page<Board> post_list(Pageable pageable){
         return boardRepository.findAll(pageable);
     }
 
-    public Board board_detail(long id){
+    public Board post_detail(long id){
         return boardRepository.findById(id).orElseThrow(()->{
             return new IllegalArgumentException("해당 id에 매칭되는 board 없음");
         });
     }
 
     @Transactional
-    public void board_delete(long id){
+    public void post_delete(long id){
         boardRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void post_update(Long id, Board requestBoard){
+        Board findBoard = boardRepository.findById(id) //dirty checking용(영속화)
+                .orElseThrow(()->{
+                    return new IllegalArgumentException("해당 id의 글번호 없음");
+                });
+        findBoard.setTitle(requestBoard.getTitle());
+        findBoard.setContent(requestBoard.getContent());
     }
 
 }

@@ -21,7 +21,7 @@ public class UserController {
 
     @GetMapping({"", "/"})
     public String main(Model model, @PageableDefault(size=3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
-        model.addAttribute("boards", boardService.board_list(pageable));
+        model.addAttribute("boards", boardService.post_list(pageable));
         return "home";
     }
     @GetMapping("/auth/join")
