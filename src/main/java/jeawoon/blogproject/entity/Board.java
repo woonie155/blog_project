@@ -1,6 +1,7 @@
 package jeawoon.blogproject.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
@@ -34,6 +35,8 @@ public class Board extends BaseTimeEntity{
     private User user;
 
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"board"})
+    @OrderBy("id")
     private List<Reply> reply;
 
     @CreationTimestamp

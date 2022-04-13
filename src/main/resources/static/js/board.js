@@ -10,6 +10,9 @@ let index = {
         $("#btn-update").on("click", () => {
             this.update_post();
         });
+        $("#btn-reply-save").on("click", () => {
+            this.save_reply();
+        });
     },
 
     save_post: function () {
@@ -32,7 +35,7 @@ let index = {
         });
     },
     delete_post: function () {
-        let id = $("#postId").val();
+        let id = $("#boardId").val();
 
         $.ajax({
             type: "DELETE",
@@ -61,6 +64,25 @@ let index = {
         }).done(function (res) {
             alert("글수정 OK");
             location.href = "/";
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    },
+   save_reply: function () {
+        let data = {
+            content: $("#reply-content").val(),
+        };
+        let boardId = $("#boardId").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/api/board/" + boardId + "/reply",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        }).done(function (res) {
+            alert("댓글 작성 OK");
+            location.href = "/board/" + boardId;
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });

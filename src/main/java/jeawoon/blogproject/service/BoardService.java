@@ -2,8 +2,10 @@ package jeawoon.blogproject.service;
 
 
 import jeawoon.blogproject.entity.Board;
+import jeawoon.blogproject.entity.Reply;
 import jeawoon.blogproject.entity.User;
 import jeawoon.blogproject.repository.BoardRepository;
+import jeawoon.blogproject.repository.ReplyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +21,7 @@ import java.util.Optional;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final ReplyRepository replyRepository;
 
 
     @Transactional
@@ -53,4 +56,15 @@ public class BoardService {
         findBoard.setContent(requestBoard.getContent());
     }
 
+    @Transactional
+    public void reply_save(User user, Long boardId, Reply reply) {
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(() -> {
+                    return new IllegalArgumentException("댓글 쓰기 실패 : 게시글 ID를 찾을 수 없습니다.");
+                });
+        reply.setUser(user);
+        reply.setBoard(board);
+
+        replyRepository.save(reply);
+    }
 }
