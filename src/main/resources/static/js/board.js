@@ -87,6 +87,18 @@ let index = {
             alert(JSON.stringify(error));
         });
     },
+   delete_reply: function (boardId, replyId) {
+        $.ajax({
+            type: "DELETE",
+            dataType: "json",
+            url: "/api/board/"+boardId+"/reply/"+replyId,
+        }).done(function (res) {
+            alert("댓글삭제 OK");
+            location.href = "/board/" + boardId;
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+   },
 }
 
 index.init();
