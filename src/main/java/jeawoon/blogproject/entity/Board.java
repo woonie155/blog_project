@@ -14,7 +14,7 @@ import java.util.List;
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Board{
+public class Board extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,6 +39,5 @@ public class Board{
     @OrderBy("id")
     private List<Reply> reply;
 
-    @CreationTimestamp
-    private Timestamp createDate;
+
 }

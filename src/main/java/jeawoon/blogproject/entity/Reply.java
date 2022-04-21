@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Reply {
+public class Reply extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,4 @@ public class Reply {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @CreationTimestamp
-    private Timestamp createDate;
 }

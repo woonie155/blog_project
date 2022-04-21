@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 //@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor
 @AllArgsConstructor
-public class User{
+public class User extends BaseTimeEntity{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -34,6 +34,4 @@ public class User{
 
     private String oauth; //kakao, google, ...
 
-    @CreationTimestamp
-    private Timestamp createDate;
 }
