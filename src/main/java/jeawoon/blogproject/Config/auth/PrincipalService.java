@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +17,7 @@ public class PrincipalService implements UserDetailsService {
     private final UserRepository userRepository;
 
 
-    // 유저 네임으로 먼저 거르기. (form- name필드와 매칭)
+    //로그인요청올시, 유저 네임으로 먼저 거르기. (form- name필드와 매칭)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User principal = userRepository.findByUsername(username)

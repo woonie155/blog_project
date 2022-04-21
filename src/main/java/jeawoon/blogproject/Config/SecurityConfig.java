@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and() // antMatchers 주소 외엔 인증필요하므로 밑으로 전달
                 .formLogin()
                 .loginPage("/auth/login")
-                .loginProcessingUrl("/auth/loginProc") //해당주소로 들어오는 값을 로그인 요청으로 보고 가로챔.
-                .defaultSuccessUrl("/"); // 로그인 정상 처리 될 시 이동. (실패- failureUrl)
+                .loginProcessingUrl("/auth/loginProc") //해당주소로 들어오는 값을 로그인 요청으로 보고 가로챔(post- x www form urlencoded형태)
+                .defaultSuccessUrl("/");//로그인 정상 처리 될 시 이동(/는 원래이동하려했던 곳으로). (실패- failureUrl)
     }
 }

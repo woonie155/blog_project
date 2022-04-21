@@ -45,7 +45,7 @@ public class PrincipalDetail implements UserDetails{
 
     @Override
     public boolean isEnabled() {
-        return true;  //계정 활성화중
+        return true;  //계정 활성화중 - 휴면계정관련
     }
 
     @Override //접근권한 계층 저장
