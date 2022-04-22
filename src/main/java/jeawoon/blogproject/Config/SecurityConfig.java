@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override //로그인시, 세션에 들어있는 정보인 비밀번호 해쉬 비교
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(principalService).passwordEncoder(encodePWD());
+
     }
 
     @Override

@@ -23,12 +23,6 @@ public class RestTempController {
 
     private final UserRepository userRepository;
 
-    @PostMapping("/test/join1")
-    public String join1(String username, String password, String email){
-        //userRepository.save();
-        return "dd";
-    }
-
     @PostMapping("/test/join")
     public String join(User user){ //폼태그 방식과 동일
         user.setRole(RoleType.USER);
