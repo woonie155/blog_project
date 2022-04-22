@@ -1,6 +1,7 @@
 package jeawoon.blogproject.controller.api;
 
 import jeawoon.blogproject.Config.auth.PrincipalDetail;
+import jeawoon.blogproject.dto.JoinRequestDto;
 import jeawoon.blogproject.dto.ResponseDto;
 import jeawoon.blogproject.entity.User;
 import jeawoon.blogproject.service.UserService;
@@ -24,8 +25,8 @@ public class UserApiController {
     private final AuthenticationManager authenticationManager;
 
     @PostMapping("/auth/joinProc")
-    public ResponseDto<Integer> joinAPI(@RequestBody User user){
-        userService.user_join(user);
+    public ResponseDto<Integer> joinAPI(@RequestBody JoinRequestDto dto){
+        userService.user_join(dto);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
     //post : auth/loginProc => 스프링 시큐리티 이용

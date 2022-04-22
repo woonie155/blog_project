@@ -1,5 +1,6 @@
 package jeawoon.blogproject.service;
 
+import jeawoon.blogproject.dto.JoinRequestDto;
 import jeawoon.blogproject.entity.RoleType;
 import jeawoon.blogproject.entity.User;
 import jeawoon.blogproject.repository.UserRepository;
@@ -19,9 +20,10 @@ public class UserService {
     private final BCryptPasswordEncoder encoder;
 
     @Transactional
-    public void user_join(User user){
-        user.setPassword(encoder.encode(user.getPassword()));
-        user.setRole(RoleType.USER);
+    public void user_join(JoinRequestDto dto){
+        dto.setPassword(encoder.encode(dto.getPassword()));
+        dto.setRole(RoleType.USER);
+        User user = dto.toEntity();
         userRepository.save(user);
     }
 
@@ -39,12 +41,14 @@ public class UserService {
         }
     }
 
-    @Transactional(readOnly = true) //카카오 로그인시, 가입자 미가입자 구분
-    public User kakao_login_findByUsername(String username) {
-        User user = userRepository.findByUsername(username).orElseGet(() -> {
-            return new User();
+    @Transactional //카카오 로그인시, 가입자 미가입자 구분
+    public void kakao_login_findByUsername(JoinRequestDto dto) {
+        userRepository.findByUsername(dto.getUsername()).orElseGet(() -> {
+            dto.setPassword(encoder.encode(dto.getPassword()));
+            User user = dto.toEntity();
+            userRepository.save(user);
+            return null;
         });
-        return user;
     }
 
 }

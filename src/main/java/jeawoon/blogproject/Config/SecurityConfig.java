@@ -42,12 +42,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {  //필터
         http
             .csrf().disable()//토큰 비활성화(테스트용)
-            .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**")
                 .permitAll()    // 위의 접근들 허용
                 .anyRequest()   // 그 외의 접근들
                 .authenticated()// 인증 필요함
-            .and() // antMatchers 주소 외엔 인증필요하므로 밑으로 전달
+                .and() // antMatchers 주소 외엔 인증필요하므로 밑으로 전달
                 .formLogin()
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/auth/loginProc") //해당주소로 들어오는 값을 로그인 요청으로 보고 가로챔(post- x www form urlencoded형태)

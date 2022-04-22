@@ -1,5 +1,6 @@
 package jeawoon.blogproject.entity;
 
+import jeawoon.blogproject.dto.JoinRequestDto;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,8 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
-//@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class User extends BaseTimeEntity{
 
@@ -25,10 +25,10 @@ public class User extends BaseTimeEntity{
     @Column(nullable = false, length = 100)
     private String password; //비밀번호
 
-    @Column(nullable = false, length = 30)
+    @Column(length = 30)
     private String fullname; //이름
 
-    @Column(nullable = false, length = 30, unique = true)
+    @Column(length = 30, unique = true)
     private String nickname; //닉네임
 
     @Column(nullable = false, length = 50)
@@ -38,5 +38,18 @@ public class User extends BaseTimeEntity{
     private RoleType role; //권한
 
     private String oauth; //kakao, google, ...
+
+
+    //
+    @Builder
+    public User(String username, String password, String nickname, String email, RoleType role, String oauth){
+        this.username=username;
+        this.password=password;
+        this.nickname=nickname;
+        this.email=email;
+        this.role=role;
+        this.oauth=oauth;
+    }
+
 
 }

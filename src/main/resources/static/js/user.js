@@ -12,6 +12,8 @@ let userForm  = {
         let data = {
             username: $("#username").val(),
             password: $("#password").val(),
+            fullname: $("#fullname").val(),
+            nickname: $("#nickname").val(),
             email: $("#email").val()
         };
         $.ajax({

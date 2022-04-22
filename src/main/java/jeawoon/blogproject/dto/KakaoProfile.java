@@ -1,4 +1,4 @@
-package jeawoon.blogproject.entity;
+package jeawoon.blogproject.dto;
 
 import lombok.Data;
 
