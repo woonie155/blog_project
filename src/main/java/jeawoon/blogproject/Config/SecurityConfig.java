@@ -45,8 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**")
                 .permitAll()    // 위의 접근들 허용
-                .anyRequest()   // 그 외의 접근들
-                .authenticated()// 인증 필요함
+                .anyRequest().authenticated()   // 그 외 접근, 인증 필요
                 .and() // antMatchers 주소 외엔 인증필요하므로 밑으로 전달
                 .formLogin()
                 .loginPage("/auth/login")

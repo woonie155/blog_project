@@ -4,14 +4,19 @@ import jeawoon.blogproject.entity.RoleType;
 import jeawoon.blogproject.entity.User;
 import lombok.*;
 
+import javax.validation.constraints.Email;
+
 @Data
 @NoArgsConstructor
 @Builder
 public class JoinRequestDto {
 
+
     private String username;
     private String password;
     private String nickname;
+
+    @Email
     private String email;
     private RoleType role;
     private String oauth;
