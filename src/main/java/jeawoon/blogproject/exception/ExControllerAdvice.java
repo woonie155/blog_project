@@ -20,7 +20,8 @@ public class ExControllerAdvice {
 
     @ExceptionHandler
     public ResponseEntity<ErrorResult> userExHandle(UserException e) {
-        ErrorResult errorResult = new ErrorResult("USER-EX(runtime)", e.getMessage());
+        ErrorResult errorResult = new ErrorResult("USER-EX(runt" +
+                "ime)", e.getMessage());
         return new ResponseEntity<>(errorResult, HttpStatus.BAD_REQUEST); //사용자의 오류로
     }
 

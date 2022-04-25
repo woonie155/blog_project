@@ -29,7 +29,7 @@ public class UserController {
     public String joinForm(){
         return "user/joinForm";
     }
-    @GetMapping("/auth/login")
+    @RequestMapping("/auth/login")
     public String loginForm(){
         return "user/loginForm";
     }
