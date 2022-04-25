@@ -42,8 +42,8 @@ public class UserService {
     }
 
     @Transactional //카카오 로그인시, 가입자 미가입자 구분
-    public void kakao_login_findByUsername(JoinRequestDto dto) {
-        userRepository.findByUsername(dto.getUsername()).orElseGet(() -> {
+    public void kakao_login_findByLoginId(JoinRequestDto dto) {
+        userRepository.findByLoginId(dto.getLoginId()).orElseGet(() -> {
             dto.setPassword(encoder.encode(dto.getPassword()));
             User user = dto.toEntity();
             userRepository.save(user);

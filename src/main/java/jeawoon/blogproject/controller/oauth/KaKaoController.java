@@ -113,18 +113,19 @@ public class KaKaoController {
 
         //웹서버 내로, 회원가입 로직
         JoinRequestDto set_User = JoinRequestDto.builder()
-                .username(kakaoProfile.getKakao_account().getEmail() + "_" + kakaoProfile.getId())
+                .loginId(kakaoProfile.getKakao_account().getEmail() + "_" + kakaoProfile.getId())
                 .password(jwKey)
+                .username("카카오로그인계정자")
                 .nickname(kakaoProfile.getKakao_account().getEmail() + "_" + kakaoProfile.getId())
                 .email(kakaoProfile.getKakao_account().getEmail())
                 .role(RoleType.USER)
                 .oauth("kakao")
                 .build();
 
-        userService.kakao_login_findByUsername(set_User); //미가입자면 회원가입시키기
+        userService.kakao_login_findByLoginId(set_User); //미가입자면 회원가입시키기
 
         // 로그인 처리 및 세션처리
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(set_User.getUsername(), jwKey));
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(set_User.getLoginId(), jwKey));
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         return "redirect:/";

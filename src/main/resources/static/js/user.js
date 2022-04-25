@@ -10,9 +10,9 @@ let userForm  = {
 
      save: function(){
         let data = {
-            username: $("#username").val(),
+            loginId: $("#loginId").val(),
             password: $("#password").val(),
-            fullname: $("#fullname").val(),
+            username: $("#username").val(),
             nickname: $("#nickname").val(),
             email: $("#email").val()
         };
@@ -31,7 +31,7 @@ let userForm  = {
     update: function () {
         let data = {
             id: $("#id").val(),
-            username: $('#username').val(),
+            loginId: $('#loginId').val(),
             password: $("#password").val(),
             email: $("#email").val()
         }

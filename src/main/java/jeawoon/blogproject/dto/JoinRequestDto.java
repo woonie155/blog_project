@@ -12,8 +12,9 @@ import javax.validation.constraints.Email;
 public class JoinRequestDto {
 
 
-    private String username;
+    private String loginId;
     private String password;
+    private String username;
     private String nickname;
 
     @Email
@@ -22,9 +23,10 @@ public class JoinRequestDto {
     private String oauth;
 
     @Builder
-    public JoinRequestDto(String username, String password, String nickname, String email, RoleType role, String oauth){
-        this.username=username;
+    public JoinRequestDto(String loginId, String password, String username, String nickname, String email, RoleType role, String oauth){
+        this.loginId=loginId;
         this.password=password;
+        this.username=username;
         this.nickname=nickname;
         this.email=email;
         this.role=role;
@@ -33,8 +35,9 @@ public class JoinRequestDto {
 
     public User toEntity(){
         User user = User.builder()
-                .username(username)
+                .loginId(loginId)
                 .password(password)
+                .username(username)
                 .nickname(nickname)
                 .email(email)
                 .role(role)

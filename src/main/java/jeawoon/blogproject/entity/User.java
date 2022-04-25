@@ -20,13 +20,13 @@ public class User extends BaseTimeEntity{
     private Long id;
 
     @Column(nullable = false, length = 100, unique = true)
-    private String username; //아이디
+    private String loginId; //아이디
 
     @Column(nullable = false, length = 100)
     private String password; //비밀번호
 
     @Column(length = 30)
-    private String fullname; //이름
+    private String username; //이름
 
     @Column(length = 30, unique = true)
     private String nickname; //닉네임
@@ -42,9 +42,10 @@ public class User extends BaseTimeEntity{
 
     //
     @Builder
-    public User(String username, String password, String nickname, String email, RoleType role, String oauth){
-        this.username=username;
+    public User(String loginId, String password, String username, String nickname, String email, RoleType role, String oauth){
+        this.loginId=loginId;
         this.password=password;
+        this.username=username;
         this.nickname=nickname;
         this.email=email;
         this.role=role;
