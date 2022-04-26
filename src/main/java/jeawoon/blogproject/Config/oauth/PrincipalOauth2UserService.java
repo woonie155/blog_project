@@ -71,8 +71,9 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
                     .provider(oAuth2UserInfo.getProvider())
                     .providerId(oAuth2UserInfo.getProviderId())
                     .build();
-            userRepository.save(set_User.toEntity());
-            return new PrincipalDetail(set_User.toEntity(), oAuth2User.getAttributes());
+            User user = set_User.toEntity();
+            userRepository.save(user);
+            return new PrincipalDetail(user, oAuth2User.getAttributes());
             //->세션에 Authentication객체생성
         }
     }

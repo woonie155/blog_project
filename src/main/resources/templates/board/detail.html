@@ -17,7 +17,9 @@
             <input type=hidden th:id="boardId" th:value="${board.id}">
             <div>
                 글 번호: <span><i th:text="|${board.id},|"></i></span>
-                작성자: <span><i th:text="${board.user.username}"></i></span>
+                작성자: <span><i th:text="${board.user.username}"></i></span><br>
+                생성일: <span><i th:text="${board.createdDate}"></i></span><br>
+                수정일: <span><i th:text="${board.lastModifiedDate}"></i></span>
             </div>
 
             <hr>
@@ -43,9 +45,14 @@
                     <li class="list-group-item d-flex justify-content-between">
                         <div th:text="${reply.content}"></div>
                         <div class="d-flex">
-                            <div th:text="|작성자 : ${reply.user.username} &nbsp|" class="font-italic"></div>
-                            <div th:text="|작성시간:~|" class="font-italic"></div>
-                            <button class="badge">수정</button>
+                            <div th:text="|작성자 : ${reply.user.username}, &nbsp|" class="font-italic"></div>
+                            <span class="font-italic" th:if="${reply.createdDate == reply.lastModifiedDate}" th:text="|등록일: ${reply.createdDate}|"></span>
+                            <span class="font-italic" th:unless="${reply.createdDate == reply.lastModifiedDate}" th:text="|수정일: ${reply.lastModifiedDate}|"></span>
+                            <div id="add_reply_update_textform">
+
+                            </div>
+                            <button th:if="${#authentication.principal.user.id} == ${reply.user.id}"
+                                    th:onclick="|javascript:index.reply_update_form(${board.id}, ${reply.id})|" class="badge">수정</button>
                             <button th:if="${#authentication.principal.user.id} == ${reply.user.id}"
                                     th:onclick="|javascript:index.delete_reply(${board.id}, ${reply.id})|" class="badge">삭제</button>
                         </div>

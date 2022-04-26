@@ -72,4 +72,5 @@ public class BoardService {
     public void reply_delete(long replyId){
         replyRepository.deleteById(replyId);
     }
+
 }

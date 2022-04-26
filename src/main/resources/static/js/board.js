@@ -1,5 +1,6 @@
 
 let index = {
+
     init: function () {
         $("#btn-board-write").on("click", () => {
             this.save_post();
@@ -101,4 +102,6 @@ let index = {
    },
 }
 
+
 index.init();
+

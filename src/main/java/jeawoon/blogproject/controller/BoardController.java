@@ -21,8 +21,8 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/board/write")
-    public String post_write(@AuthenticationPrincipal User user){
-        System.out.println("user = " + user.getUsername());
+    public String post_write(@AuthenticationPrincipal PrincipalDetail principalDetail){
+        System.out.println("user = " + principalDetail.getUsername());
         return "board/writeForm";
     }
 
