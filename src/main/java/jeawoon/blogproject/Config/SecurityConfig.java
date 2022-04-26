@@ -2,6 +2,7 @@ package jeawoon.blogproject.Config;
 
 
 import jeawoon.blogproject.Config.auth.PrincipalService;
+import jeawoon.blogproject.Config.oauth.PrincipalOauth2UserService;
 import jeawoon.blogproject.handler.LoginFailureHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +24,8 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PrincipalService principalService;
+    private final PrincipalOauth2UserService principalOauth2UserService;
+    private final BCryptPasswordEncoder encodePWD;
 
     @Bean
     @Override
@@ -30,17 +33,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    @Bean //해쉬방식 지정
-    public BCryptPasswordEncoder encodePWD(){
-        return new BCryptPasswordEncoder();
-    }
-
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(){
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setHideUserNotFoundExceptions(false); //아이디실패, 비번실패 로직 분리
         daoAuthenticationProvider.setUserDetailsService(principalService);
-        daoAuthenticationProvider.setPasswordEncoder(encodePWD());
+        daoAuthenticationProvider.setPasswordEncoder(encodePWD);
         return daoAuthenticationProvider;
     }
 
@@ -63,13 +61,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()    // 위의 접근들 허용
                 .anyRequest().authenticated()   // 그 외 접근, 인증 필요
                 .and() // antMatchers 주소 외엔 인증필요하므로 밑으로 전달
-                .formLogin()
-                .usernameParameter("loginId")
-                .passwordParameter("password")
-                .loginPage("/auth/login")
-                .loginProcessingUrl("/auth/loginProc") //해당주소로 들어오는 값을 로그인 요청으로 보고 가로챔(post- x www form urlencoded형태)
-                .defaultSuccessUrl("/")//로그인 정상 처리 될 시 이동(/는 원래이동하려했던 곳으로). (실패- failureUrl)
-                .failureUrl("/auth/login?error=true")
-                .failureHandler(failureHandler());
+                    .formLogin()
+                    .usernameParameter("loginId")
+                    .passwordParameter("password")
+                    .loginPage("/auth/login")
+                    .loginProcessingUrl("/auth/loginProc") //해당주소로 들어오는 값을 로그인 요청으로 보고 가로챔(post- x www form urlencoded형태)
+                    .defaultSuccessUrl("/")//로그인 정상 처리 될 시 이동(/는 원래이동하려했던 곳으로). (실패- failureUrl)
+                    .failureUrl("/auth/login?error=true")
+                    .failureHandler(failureHandler())
+                .and()
+                    .oauth2Login()
+                    .loginPage("/auth/login")
+                    .userInfoEndpoint()
+                    .userService(principalOauth2UserService);
+
     }
 }

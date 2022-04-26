@@ -119,7 +119,8 @@ public class KaKaoController {
                 .nickname(kakaoProfile.getKakao_account().getEmail() + "_" + kakaoProfile.getId())
                 .email(kakaoProfile.getKakao_account().getEmail())
                 .role(RoleType.USER)
-                .oauth("kakao")
+                .provider("kakao")
+                .providerId(String.valueOf(kakaoProfile.getId()))
                 .build();
 
         userService.kakao_login_findByLoginId(set_User); //미가입자면 회원가입시키기

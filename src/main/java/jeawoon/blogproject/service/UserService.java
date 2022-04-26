@@ -35,7 +35,7 @@ public class UserService {
         });
 
         //OAuth 사용자는 비번,이메일 변경 불가
-        if(updateUser.getOauth()==null || updateUser.getOauth().equals("")){
+        if(updateUser.getProvider()==null || updateUser.getProvider().equals("")){
             updateUser.setPassword(encoder.encode(user.getPassword()));
             updateUser.setEmail(user.getEmail());
         }

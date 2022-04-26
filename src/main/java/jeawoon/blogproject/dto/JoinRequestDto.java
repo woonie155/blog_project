@@ -29,17 +29,19 @@ public class JoinRequestDto {
     @Email
     private String email;
     private RoleType role;
-    private String oauth;
+    private String provider;
+    private String providerId;
 
     @Builder
-    public JoinRequestDto(String loginId, String password, String username, String nickname, String email, RoleType role, String oauth){
+    public JoinRequestDto(String loginId, String password, String username, String nickname, String email, RoleType role, String provider, String providerId){
         this.loginId=loginId;
         this.password=password;
         this.username=username;
         this.nickname=nickname;
         this.email=email;
         this.role=role;
-        this.oauth=oauth;
+        this.provider=provider;
+        this.providerId=providerId;
     }
 
     public User toEntity(){
@@ -50,7 +52,8 @@ public class JoinRequestDto {
                 .nickname(nickname)
                 .email(email)
                 .role(role)
-                .oauth(oauth)
+                .provider(provider)
+                .providerId(providerId)
                 .build();
         return user;
     }
