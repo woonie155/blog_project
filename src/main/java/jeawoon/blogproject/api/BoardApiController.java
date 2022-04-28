@@ -1,4 +1,4 @@
-package jeawoon.blogproject.controller.api;
+package jeawoon.blogproject.api;
 
 
 import jeawoon.blogproject.Config.auth.PrincipalDetail;

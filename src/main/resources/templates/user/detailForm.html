@@ -18,26 +18,31 @@
             </div>
             <hr>
 
-            <div th:if="${principal.oauth == null}"> <!--OAuth 미이용자-->
+            <div class="form-group">
+                닉네임: <input type="text" th:value="${principal.nickname}" id="nickname" class="form-control">
+            </div>
+
+            <div th:if="${#strings.isEmpty(principal.provider)}"> <!--OAuth 미이용자-->
                 <div class="form-group">
                     비밀번호: <input type="password" class="form-control" id="password" required>
                 </div>
 
                 <div class="form-group">
-                    이메일: <input type="email" th:value="${principal.getEmail()}" class="form-control" id="email" required>
+                    이메일: <input type="email" th:value="${principal.email}" class="form-control" id="email" required>
                 </div>
             </div>
 
-            <div th:unless="${principal.oauth == null}"> <!--OAuth 미이용자-->
+            <div th:unless="${#strings.isEmpty(principal.provider)}"> <!--OAuth 이용자-->
                 <div class="form-group">
-                    이메일: <input type="email" th:value="${principal.getEmail()}" class="form-control" id="email2" readonly>
+                    이메일: <input type="email" th:value="${principal.email}" class="form-control" id="email" readonly>
                 </div>
             </div>
 
             <div class="d-flex justify-content-end">
                 <span>
                     <button class="btn btn-secondary" onclick="history.back()">돌아가기</button>
-                    <button id="btn-update" class="btn btn-primary">수정하기</button>
+                    <button th:if="${#strings.isEmpty(principal.provider)}" id="btn-update" class="btn btn-primary">수정하기</button>
+                    <button th:unless="${#strings.isEmpty(principal.provider)}" id="btn-update2" class="btn btn-primary">수정하기</button>
                     <button id="btn-delete" class="btn btn-danger">탈퇴하기</button>
                 </span>
             </div>

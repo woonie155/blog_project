@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final BCryptPasswordEncoder encodePWD;
 
     @Bean
-    @Override
+    @Override //회원정보 수정시 필요(세션교체)
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }

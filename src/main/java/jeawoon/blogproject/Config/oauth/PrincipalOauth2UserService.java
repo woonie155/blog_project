@@ -29,7 +29,6 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserRepository userRepository;
-    private final UserService userService;
 
     @Override //구글로 정보(userRequest)받은 것 후처리 함수
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
