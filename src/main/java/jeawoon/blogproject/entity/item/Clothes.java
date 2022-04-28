@@ -1,5 +1,6 @@
 package jeawoon.blogproject.entity.item;
 
+import jeawoon.blogproject.entity.RoleType;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -7,15 +8,16 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("A")
 @Getter
-public class Accessories extends Item{
+@DiscriminatorValue("C")
+public class Clothes extends Item{
 
-    private String material;
+    private String brand;
 
     @Builder
-    public Accessories(Long id, String name, int price, int stockQuantity, String material){
+    public Clothes(Long id, String name, int price, int stockQuantity, String brand){
         super(id, name, price, stockQuantity);
-        this.material=material;
+        this.brand=brand;
     }
+
 }

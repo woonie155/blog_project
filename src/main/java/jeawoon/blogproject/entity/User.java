@@ -1,5 +1,6 @@
 package jeawoon.blogproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jeawoon.blogproject.dto.JoinRequestDto;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -8,6 +9,8 @@ import org.hibernate.annotations.DynamicInsert;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -39,6 +42,13 @@ public class User extends BaseTimeEntity{
 
     private String provider; //kakao, google, ...
     private String providerId;
+
+    @Embedded
+    private Address address;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders = new ArrayList<>();
 
 
     //

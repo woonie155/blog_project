@@ -1,7 +1,8 @@
 package jeawoon.blogproject.entity.item;
 
+import jeawoon.blogproject.entity.RoleType;
 import jeawoon.blogproject.exception.NotEnoughStockException;
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "DTYPE")
+@AllArgsConstructor
 public abstract class Item {
 
     @Id

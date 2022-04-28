@@ -30,7 +30,7 @@ let index = {
             dataType: "json"
         }).done(function (res) {
             alert("글작성 OK");
-            location.href = "/";
+            location.href = "/board/main";
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
