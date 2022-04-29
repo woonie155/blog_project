@@ -7,9 +7,8 @@
 
 
 <body>
-<div>
+<div id="wrap">
     <div th:replace="fragments/navbar :: navbar" />
-
 
     <div class="container">
         <div class="form-group">
@@ -38,6 +37,7 @@
                 </span>
             </div>
         </div>
+
         <div>
             <div class="card">
                 <div class="card-header">댓글 리스트</div>
@@ -48,9 +48,11 @@
                             <div th:text="|작성자 : ${reply.user.username}, &nbsp|" class="font-italic"></div>
                             <span class="font-italic" th:if="${reply.createdDate == reply.lastModifiedDate}" th:text="|등록일: ${reply.createdDate}|"></span>
                             <span class="font-italic" th:unless="${reply.createdDate == reply.lastModifiedDate}" th:text="|수정일: ${reply.lastModifiedDate}|"></span>
+
                             <div id="add_reply_update_textform">
 
                             </div>
+
                             <button th:if="${#authentication.principal.user.id} == ${reply.user.id}"
                                     th:onclick="|javascript:index.reply_update_form(${board.id}, ${reply.id})|" class="badge">수정</button>
                             <button th:if="${#authentication.principal.user.id} == ${reply.user.id}"
@@ -73,11 +75,10 @@
             </div>
         </div>
     </div>
-
-
-
-    <div th:replace="fragments/footer :: footer" />
-    <script src="/js/board.js"></script>
 </div>
+
+<div th:replace="fragments/footer :: footer" />
+<script src="/js/board.js"></script>
+
 </body>
 </html>

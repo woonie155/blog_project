@@ -9,21 +9,13 @@
 </sec:authorize>
 
 <body>
-<div>
+<div id="wrap">
     <div th:replace="fragments/navbar :: navbar" />
 
-    <div class="container">
-        <div class="card m-2">
-            <div class="card-body">
-                <h4 class="card-title">제목</h4>
-                <a href="#" class="btn btn-primary">상세보기</a>
-            </div>
-        </div>
-    </div>
+    내용
 
 
-
-    <div th:replace="fragments/footer :: footer" />
 </div>
+<div th:replace="fragments/footer :: footer" />
 </body>
 </html>

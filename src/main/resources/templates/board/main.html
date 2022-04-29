@@ -9,9 +9,8 @@
 </sec:authorize>
 
 <body>
-<div>
+<div id="wrap">
     <div th:replace="fragments/navbar :: navbar" />
-
     <h1>게시판 메인 화면</h1>
 
     <a class="nav-link" href="/board/write">1. 글 올리기</a>
@@ -41,8 +40,9 @@
         <li class="page-item"><a class="page-link"th:href="@{?page={num}(num=${boards.getNumber()-1})}">이전</a></li>
         <li class="page-item"><a class="page-link" th:href="@{?page={num}(num=${boards.getNumber()+1})}">다음</a></li>
     </ul>
-
-    <div th:replace="fragments/footer :: footer" />
 </div>
+
+<div th:replace="fragments/footer :: footer" />
+
 </body>
 </html>

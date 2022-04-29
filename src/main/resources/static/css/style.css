@@ -1,0 +1,15 @@
+html, body {
+    height: 100%
+}
+
+#wrap {
+    height: auto;
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 220px;
+}
+
+footer {
+    position: relative;
+    transform: translateY(-100%);
+}

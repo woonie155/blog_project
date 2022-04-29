@@ -3,8 +3,9 @@
 <head th:replace="fragments/header :: header">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
+
 <body>
-<div>
+<div id="wrap">
     <div th:replace="fragments/navbar :: navbar" />
 
     <div class="container">
@@ -21,20 +22,13 @@
             </div>
         </form>
         <button id="btn-update" class="btn btn-primary">수정하기</button>
+
     </div>
-
-
-    <!-- 썸머노트 사용 -->
-    <script>
-    $('.summernote').summernote({
-        tabsize: 2,
-        height: 300,
-    });
-    </script>
-
-    <div th:replace="fragments/footer :: footer" />
-    <script src="/js/board.js"></script>
-
 </div>
+
+
+<div th:replace="fragments/footer :: footer" />
+<script src="/js/board.js"></script>
+
 </body>
 </html>

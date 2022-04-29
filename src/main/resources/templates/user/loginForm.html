@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<div>
+<div id="wrap">
     <div th:replace="fragments/navbar :: navbar" />
 
     <div class="container">
@@ -33,8 +33,8 @@
             <a href="/oauth2/authorization/google"><img height="38px" src="/image/GoogleLoginButton.png"></a>
         </form>
     </div>
-
-    <div th:replace="fragments/footer :: footer" />
 </div>
+
+<div th:replace="fragments/footer :: footer" />
 </body>
 </html>

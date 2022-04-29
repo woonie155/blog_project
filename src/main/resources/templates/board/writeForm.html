@@ -4,7 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<div>
+
+<div id="wrap">
     <div th:replace="fragments/navbar :: navbar" />
 
     <div class="container">
@@ -21,7 +22,7 @@
         </form>
         <button id="btn-board-write" class="btn btn-primary">작성하기</button>
     </div>
-
+</div>
 
     <!-- 썸머노트 사용 -->
     <script>
@@ -34,6 +35,5 @@
     <div th:replace="fragments/footer :: footer" />
     <script src="/js/board.js"></script>
 
-</div>
 </body>
 </html>
