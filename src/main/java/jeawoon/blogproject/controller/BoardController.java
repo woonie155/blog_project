@@ -31,14 +31,13 @@ public class BoardController {
         return "board/writeForm";
     }
 
-
     @GetMapping("/board/{id}")
     public String post_detail(@PathVariable("id") Long id, Model model){
         model.addAttribute("board", boardService.post_detail(id));
         return "board/detail";
     }
 
-    @GetMapping("board/{id}/update")
+    @GetMapping("/board/{id}/update")
     public String post_update(@PathVariable("id") Long id, Model model){
         model.addAttribute("board", boardService.post_detail(id));
         return "board/updateForm";

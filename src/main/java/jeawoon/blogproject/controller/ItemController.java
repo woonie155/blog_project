@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -25,18 +27,26 @@ public class ItemController {
         return "shop/main";
     }
 
-
     //아이템 저장 화면접속
     @GetMapping("/shop/clothesSaveForm")
-    public String saveSite_enter(Model model){
+    public String clothesSaveSite_enter(Model model){
         model.addAttribute("item", new ClothesSaveDto());
         return "shop/clothesSaveForm";
     } //아이템 저장
     @PostMapping("shop/clothes/save")
-    public String itemSave(ClothesSaveDto dto){
+    public String clothesSave(ClothesSaveDto dto){
 
         itemService.saveItem(dto);
         return "redirect:/shop/main";
     }
+
+    //아이템 수정화면 접속
+    @GetMapping("/shop/clothes/{itemId}/edit")
+    public String clothesUpdateSite_Form(@PathVariable("itemId") Long itemId, Model model) {
+
+        model.addAttribute("dto", itemService.item_detail(itemId));
+        return "shop/clothesUpdateForm";
+    }
+
 
 }

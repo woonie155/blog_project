@@ -33,7 +33,7 @@
                 <td th:text="${item.price}"></td>
                 <td th:text="${item.stockQuantity}"></td>
                 <td>
-                    <a href="#" class="btn btn-primary" role="button">수정</a>
+                    <a href="#" th:href="@{/shop/clothes/{itemId}/edit (itemId=${item.id})}" class="btn btn-primary" role="button">수정</a>
                 </td>
             </tr>
             </tbody>
