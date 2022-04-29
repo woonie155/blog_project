@@ -18,12 +18,14 @@ public class ItemApiController {
 
     private final ItemService itemService;
 
+    //아이템 수정
     @PutMapping("/shop/clothes/{itemId}/edit")
     public ResponseDto<Integer> update_clothes(@PathVariable("itemId") Long id, @RequestBody ClothesSaveDto dto){
-        System.out.println("가나다");
         itemService.updateItem(id, dto);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
+
+    
 
 
 
