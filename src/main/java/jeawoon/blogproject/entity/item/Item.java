@@ -8,10 +8,11 @@ import javax.persistence.*;
 
 
 @Entity
-@Getter
+@Getter @Setter
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "DTYPE")
 @AllArgsConstructor
+@NoArgsConstructor
 public abstract class Item {
 
     @Id
@@ -37,8 +38,8 @@ public abstract class Item {
      */
     public void removeStock(int quantity) {
         int restStock = this.stockQuantity - quantity;
-        if (restStock < 0) {
-            throw new NotEnoughStockException("need more stock");
+        if (restStock < 0) { //재고 부족 -> 에러처리
+            throw new NotEnoughStockException("재고가 부족합니다.");
         }
         this.stockQuantity = restStock;
     }
