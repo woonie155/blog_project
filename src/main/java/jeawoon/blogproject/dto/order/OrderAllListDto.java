@@ -8,10 +8,11 @@ import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @EqualsAndHashCode(of = "orderId")
-public class OrderListAndOrderItemsDto {
+public class OrderAllListDto {
 
     private Long orderId;
     private String username;
@@ -20,7 +21,15 @@ public class OrderListAndOrderItemsDto {
     private Address address; //밸류값은 ㄱㅊ 걍써도댐
     private List<OrderItemDto> orderItems; //컬렉션 부분 엔티티 -> 이또한 DTO로 설정
 
-    public OrderListAndOrderItemsDto(Long orderId, String username, LocalDateTime orderDate, OrderType status, Address address) {
+    public OrderAllListDto(Order order) {
+        this.orderId = order.getId();
+        this.username = order.getUser().getUsername();
+        this.orderDate = order.getOrderDate();
+        this.address = order.getDelivery().getAddress();
+        this.orderItems = order.getOrderItems().stream()
+                .map(o -> new OrderItemDto(o)).collect(Collectors.toList());
+    }
+    public OrderAllListDto(Long orderId, String username, LocalDateTime orderDate, OrderType status, Address address) {
         this.orderId = orderId;
         this.username = username;
         this.orderDate = orderDate;
@@ -28,7 +37,7 @@ public class OrderListAndOrderItemsDto {
         this.address = address;
     }
 
-    public OrderListAndOrderItemsDto(Long orderId, String username, LocalDateTime orderDate, OrderType status, Address address, List<OrderItemDto> orderItems) {
+    public OrderAllListDto(Long orderId, String username, LocalDateTime orderDate, OrderType status, Address address, List<OrderItemDto> orderItems) {
         this.orderId = orderId;
         this.username = username;
         this.orderDate = orderDate;

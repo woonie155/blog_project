@@ -13,7 +13,10 @@
     <div th:replace="fragments/navbar :: navbar" />
 
     <h1>쇼핑 메인 화면</h1>
-    <a class="nav-link" href="/shop/clothesSaveForm">1. 아이템 등록</a>
+
+        <a style="display:inline;" class="nav-link" href="/shop/clothesSaveForm">1. 아이템 등록</a>
+        <a style="display:inline;" class="nav-link" href="/shop/orderSaveForm">2. 주문하기</a>
+        <a style="display:inline;" class="nav-link" href="/shop/orderListForm">3. 주문목록</a>
 
     <div>
         <table class="table table-striped">
@@ -42,7 +45,7 @@
 
 
 </div>
-
     <div th:replace="fragments/footer :: footer" />
+    <script src="/js/order.js"></script>
 </body>
 </html>

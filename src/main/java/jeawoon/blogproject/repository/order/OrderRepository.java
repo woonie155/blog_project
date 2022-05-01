@@ -1,7 +1,6 @@
 package jeawoon.blogproject.repository.order;
 
 import jeawoon.blogproject.dto.order.OrderSearchDto;
-import jeawoon.blogproject.dto.order.OrdersListDto;
 import jeawoon.blogproject.entity.Address;
 import jeawoon.blogproject.entity.Order;
 import jeawoon.blogproject.entity.OrderType;

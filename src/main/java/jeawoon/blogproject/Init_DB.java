@@ -80,11 +80,18 @@ public class Init_DB {
 
             OrderItem orderItem1 = OrderItem.createOrderItem(clothes1,10000, 2);
             OrderItem orderItem2 = OrderItem.createOrderItem(clothes2,8000, 1);
+            OrderItem orderItem3 = OrderItem.createOrderItem(clothes2,8000, 3);
 
-            Delivery delivery = new Delivery();
-            delivery.setAddress(user1.getAddress());
-            Order order = Order.createOrder(user1, delivery, orderItem1, orderItem2);
-            em.persist(order);
+            Delivery delivery1 = new Delivery();
+            delivery1.setAddress(user1.getAddress());
+            Delivery delivery2 = new Delivery();
+            delivery2.setAddress(user1.getAddress());
+
+            Order order1= Order.createOrder(user1, delivery1, orderItem1, orderItem2);
+            Order order2= Order.createOrder(user2, delivery2, orderItem3);
+            em.persist(order1);
+            em.persist(order2);
+
         }
     }
 }

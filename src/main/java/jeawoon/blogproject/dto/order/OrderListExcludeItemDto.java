@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class OrdersListDto {
+public class OrderListExcludeItemDto {
 
     private Long orderId;
     private String loginId;
@@ -21,7 +21,7 @@ public class OrdersListDto {
     private Address address;
 
     //JPA 반환 가능케
-    public OrdersListDto(Long orderId, String loginId, String username, LocalDateTime orderDate, OrderType status, Address address){
+    public OrderListExcludeItemDto(Long orderId, String loginId, String username, LocalDateTime orderDate, OrderType status, Address address){
         this.orderId = orderId;
         this.loginId = loginId;
         this.username = username;

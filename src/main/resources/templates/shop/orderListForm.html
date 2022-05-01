@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/header :: header">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal" var="principal" />
+</sec:authorize>
+
+<body>
+<div id="wrap">
+    <div th:replace="fragments/navbar :: navbar" />
+
+    <div class="container">
+        <form>
+
+    </div>
+</div>
+
+
+<div th:replace="fragments/footer :: footer" />
+<script src="/js/order.js"></script>
+
+</body>
+</html>

@@ -15,7 +15,7 @@ import static javax.persistence.FetchType.LAZY;
 @Entity
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class OrderItem {
+public class OrderItem { //주문과 아이템의 다대다 풀기위한 엔티티
 
     @Id
     @GeneratedValue
