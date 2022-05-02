@@ -11,11 +11,55 @@
 <body>
 <div id="wrap">
     <div th:replace="fragments/navbar :: navbar" />
+    <br>
+    <div><h3>&nbsp;&nbsp;주문목록 페이지입니다. (페이지당 2개만 출력되도록 단순화)</h3></div>
+    <br>
 
-    <div class="container">
-        <form>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>주문 PK</th>
+            <th>주문자 ID</th>
+            <th>주문자 이름</th>
+            <th>주문 날짜</th>
+            <th>주문 상태</th>
+            <th>주소</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${lists.content}" th:object="${order}">
+            <td th:text="*{orderId}"></td>
+            <td th:text="*{loginId}"></td>
+            <td th:text="*{username}"></td>
+            <td th:text="*{orderDate}"></td>
+            <td th:text="*{status}"></td>
+            <td th:text="*{address}"></td>
+        </tr>
+        </tbody>
+    </table>
 
-    </div>
+    <span th:if="${lists.first} and ${lists.last}">
+        <ul class="pagination justify-content-center" th:if="${lists.first} and ${lists.last}">
+            <li class="page-item disabled"><a class="page-link" th:href="@{?page={num}(num=${lists.getNumber()-1})}">이전</a></li>
+            <li class="page-item disabled"><a class="page-link" th:href="@{?page={num}(num=${lists.getNumber()+1})}">다음</a></li>
+        </ul>
+    </span>
+    <span th:unless="${lists.first} and ${lists.last}">
+        <ul class="pagination justify-content-center" th:if="${lists.first}">
+            <li class="page-item disabled"><a class="page-link" th:href="@{?page={num}(num=${lists.getNumber()-1})}">이전</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{?page={num}(num=${lists.getNumber()+1})}">다음</a></li>
+        </ul>
+
+        <ul class="pagination justify-content-center" th:if="${lists.last}">
+            <li class="page-item"><a class="page-link"th:href="@{?page={num}(num=${lists.getNumber()-1})}">이전</a></li>
+            <li class="page-item disabled"><a class="page-link" th:href="@{?page={num}(num=${lists.getNumber()+1})}">다음</a></li>
+        </ul>
+
+        <ul class="pagination justify-content-center" th:if="!${lists.last} and !${lists.first}">
+            <li class="page-item"><a class="page-link"th:href="@{?page={num}(num=${lists.getNumber()-1})}">이전</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{?page={num}(num=${lists.getNumber()+1})}">다음</a></li>
+        </ul>
+    </span>
 </div>
 
 

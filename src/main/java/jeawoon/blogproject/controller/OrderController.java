@@ -1,10 +1,16 @@
 package jeawoon.blogproject.controller;
 
+import jeawoon.blogproject.dto.order.OrderListExcludeItemDto;
 import jeawoon.blogproject.entity.User;
 import jeawoon.blogproject.entity.item.Item;
 import jeawoon.blogproject.service.ItemService;
+import jeawoon.blogproject.service.OrderService;
 import jeawoon.blogproject.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +23,7 @@ public class OrderController {
 
     private final UserService userService;
     private final ItemService itemService;
+    private final OrderService orderService;
 
     //주문하기 페이지 접속
     @GetMapping("/shop/orderSaveForm")
@@ -36,6 +43,12 @@ public class OrderController {
         return "shop/orderListForm";
     }
 
+    //
+    @GetMapping("/order_page")
+    public String orderList_Page(Model model, @PageableDefault(size = 2, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+        model.addAttribute("lists", orderService.searchPageAll(pageable));
+        return "shop/orderListForm";
+    }
 
 
 }

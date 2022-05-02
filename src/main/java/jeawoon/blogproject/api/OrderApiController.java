@@ -1,20 +1,22 @@
 package jeawoon.blogproject.api;
 
-import jeawoon.blogproject.dto.JoinRequestDto;
 import jeawoon.blogproject.dto.ResponseDto;
-import jeawoon.blogproject.dto.item.ClothesSaveDto;
 import jeawoon.blogproject.dto.order.*;
 import jeawoon.blogproject.entity.Order;
 import jeawoon.blogproject.repository.order.OrderRepository;
 import jeawoon.blogproject.repository.order.query.OrderQueryRepository;
 import jeawoon.blogproject.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 
@@ -36,6 +38,14 @@ public class OrderApiController {
         orderService.saveOrder(dto);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
+    ////
+    //주문 조회
+    @GetMapping("/order_page_api")
+    public Page<OrderListExcludeItemDto> orderList_Page(@PageableDefault(size = 2, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+        return orderService.searchPageAll(pageable);
+    }
+
+
 
 
     //주문조회
@@ -81,4 +91,8 @@ public class OrderApiController {
                 .map(e -> new OrderrrDto(e.getKey().getOrderId(), e.getKey().getUsername(), e.getKey().getOrderDate(), e.getKey().getStatus(), e.getKey().getAddress(), e.getValue()))
                 .collect(toList()); //정렬 소트는 별도지정해야함
     }
+
+
+
+
 }

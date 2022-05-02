@@ -1,6 +1,7 @@
 package jeawoon.blogproject.service;
 
 import jeawoon.blogproject.dto.order.OrderAllListDto;
+import jeawoon.blogproject.dto.order.OrderListExcludeItemDto;
 import jeawoon.blogproject.dto.order.OrderSaveRequestDto;
 import jeawoon.blogproject.entity.*;
 import jeawoon.blogproject.entity.item.Item;
@@ -9,9 +10,12 @@ import jeawoon.blogproject.repository.UserRepository;
 import jeawoon.blogproject.repository.order.OrderRepository;
 import jeawoon.blogproject.repository.order.query.OrderQueryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,5 +53,10 @@ public class OrderService {
                 .map(o-> new OrderAllListDto(o))
                 .collect(Collectors.toList());
         return result;
+    }
+    //주문아이템컬렉션 제외하고 일단 설계
+    public Page<OrderListExcludeItemDto> searchPageAll(Pageable pageable) {
+        Page<Order> page = orderRepository.findAllWithUserDeliveryBy(pageable);
+        return page.map(o -> new OrderListExcludeItemDto(o.getId(), o.getUser().getLoginId(), o.getUser().getUsername(), o.getOrderDate(), o.getStatus(), o.getUser().getAddress()));
     }
 }

@@ -38,6 +38,7 @@ public class OrderQueryRepository {
                 .getResultList();
     }
 
+
     public List<Order> findALLOrderList() { //컬렉션 포함, 페이징 불가
         //다기준으로 db서칭되므로, 중복많음 -> 앱에선 distinct처리따로 또 하지만, db에서 앱으로의 전송량이 많음
         ///-> 페이징 기능은 db결과기준이므로 중복에의한 오류생김 가능성 존재 + 중복데이터에의한 메모리 과부화 가능성 큼
