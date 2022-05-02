@@ -31,9 +31,9 @@
             <td th:text="*{orderId}"></td>
             <td th:text="*{loginId}"></td>
             <td th:text="*{username}"></td>
-            <td th:text="*{orderDate}"></td>
+            <td th:text="${#temporals.format(order.orderDate, 'yyyy-MM-dd HH:mm')}"></td>
             <td th:text="*{status}"></td>
-            <td th:text="*{address}"></td>
+            <td th:text="|*{address.address1} *{address.zipcode}, *{address.address2}|"></td>
         </tr>
         </tbody>
     </table>
