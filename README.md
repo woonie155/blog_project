@@ -7,7 +7,7 @@
 1. SpringBoot
 2. Spring Security, OAuth2.0
 3. MySQL
-4. JPA, Spring Data JPA
+4. JPA, Spring Data JPA, JPQL
 5. Thymeleaf, js-ajax
 
 # UseIDL
@@ -17,7 +17,7 @@ IntelliJ
 ## 권한
 <img width="80%" src="https://user-images.githubusercontent.com/73781215/166437323-04520739-8a23-46dc-b243-af7067692f34.gif">
 -접속페이지 권한 확인<br>
--회원가입<br>
+-일반회원가입, OAuth2.0회원가입<br>
 -로그인<br>
 -로그아웃<br>
 
@@ -33,3 +33,9 @@ IntelliJ
 -아이템수정<br>
 -주문등록<br>
 -주문목록조회<br>
+
+# 이외 특징
+- DB 쿼리 최적화<br>
+- Auditing<br>
+- 검증<br>
+- 예외처리<br>
