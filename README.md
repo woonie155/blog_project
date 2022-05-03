@@ -10,17 +10,26 @@
 4. JPA, Spring Data JPA
 5. Thymeleaf, js-ajax
 
-
-# 기능
-1. 회원가입, OAuth2.0
-2. 로그인
-
-# API
-1. 게시판 글, 댓글 CRUD
-2. 게시글 조회
-3. 아이템, 주문 CRUD
-4. 주문목록 조회
-
 # UseIDL
 IntelliJ 
 
+# 기능
+## 권한
+<img width="80%" src="https://user-images.githubusercontent.com/73781215/166437323-04520739-8a23-46dc-b243-af7067692f34.gif">
+-접속페이지 권한 확인<br>
+-회원가입<br>
+-로그인<br>
+-로그아웃<br>
+
+## 게시판
+<img width="80%" src="https://user-images.githubusercontent.com/73781215/166437825-127aee3d-f380-4fe7-ab90-47447daf3f7b.gif">
+-목록 페이징<br>
+-게시글 수정, 등록, 삭제(권한확인)<br>
+-댓글 등록, 삭제(권한 확인)<br>
+
+## 주문
+<img width="75%" src="https://user-images.githubusercontent.com/73781215/166438000-b46b001b-131d-46b0-bb3c-88390e69259f.gif">
+-아이템등록<br>
+-아이템수정<br>
+-주문등록<br>
+-주문목록조회<br>
