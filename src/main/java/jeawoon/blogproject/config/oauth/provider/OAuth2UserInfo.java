@@ -1,4 +1,4 @@
-package jeawoon.blogproject.Config.oauth.provider;
+package jeawoon.blogproject.config.oauth.provider;
 
 public interface OAuth2UserInfo {
 

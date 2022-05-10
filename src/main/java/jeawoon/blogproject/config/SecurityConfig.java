@@ -1,8 +1,8 @@
-package jeawoon.blogproject.Config;
+package jeawoon.blogproject.config;
 
 
-import jeawoon.blogproject.Config.auth.PrincipalService;
-import jeawoon.blogproject.Config.oauth.PrincipalOauth2UserService;
+import jeawoon.blogproject.config.auth.PrincipalService;
+import jeawoon.blogproject.config.oauth.PrincipalOauth2UserService;
 import jeawoon.blogproject.handler.LoginFailureHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

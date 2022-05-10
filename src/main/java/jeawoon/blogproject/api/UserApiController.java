@@ -1,6 +1,6 @@
 package jeawoon.blogproject.api;
 
-import jeawoon.blogproject.Config.auth.PrincipalDetail;
+import jeawoon.blogproject.config.auth.PrincipalDetail;
 import jeawoon.blogproject.dto.*;
 import jeawoon.blogproject.entity.User;
 import jeawoon.blogproject.service.UserService;

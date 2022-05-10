@@ -4,6 +4,7 @@ package jeawoon.blogproject;
 import jeawoon.blogproject.dto.JoinRequestDto;
 import jeawoon.blogproject.entity.*;
 import jeawoon.blogproject.entity.item.Clothes;
+import jeawoon.blogproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,7 @@ public class Init_DB {
     @PostConstruct
     public void init() {
         initService.dbInit1();
+        initService.dbInit2();
     }
 
     @Component
@@ -30,6 +32,7 @@ public class Init_DB {
 
         private final EntityManager em;
         private final BCryptPasswordEncoder bCryptPasswordEncoder;
+        private final UserRepository userRepository;
 
         public void dbInit1() {
 
@@ -92,6 +95,15 @@ public class Init_DB {
             em.persist(order1);
             em.persist(order2);
 
+        }
+        public void dbInit2() {
+            User user = userRepository.findByLoginId("user1").get();
+            Board board = new Board(user, "안녕하세요1!!", "아무내용입니다1.");
+            Board board2 = new Board(user, "반갑습니다2!!", "아무내용입니다2.");
+            Board board3 = new Board(user, "ABCDE3!!", "아무내용입니다3.");
+            Board board4 = new Board(user, "제목입니다4!!", "아무내용입니다4.");
+            em.persist(board);
+            em.persist(board2);em.persist(board3);em.persist(board4);
         }
     }
 }

@@ -1,17 +1,15 @@
-package jeawoon.blogproject.Config.oauth;
+package jeawoon.blogproject.config.oauth;
 
 
-import jeawoon.blogproject.Config.auth.PrincipalDetail;
-import jeawoon.blogproject.Config.oauth.provider.GoogleUserInfo;
-import jeawoon.blogproject.Config.oauth.provider.NaverUserInfo;
-import jeawoon.blogproject.Config.oauth.provider.OAuth2UserInfo;
+import jeawoon.blogproject.config.auth.PrincipalDetail;
+import jeawoon.blogproject.config.oauth.provider.GoogleUserInfo;
+import jeawoon.blogproject.config.oauth.provider.NaverUserInfo;
+import jeawoon.blogproject.config.oauth.provider.OAuth2UserInfo;
 import jeawoon.blogproject.dto.JoinRequestDto;
 import jeawoon.blogproject.entity.RoleType;
 import jeawoon.blogproject.entity.User;
 import jeawoon.blogproject.repository.UserRepository;
-import jeawoon.blogproject.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;

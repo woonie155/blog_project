@@ -1,4 +1,4 @@
-package jeawoon.blogproject.Config.auth;
+package jeawoon.blogproject.config.auth;
 
 
 import jeawoon.blogproject.entity.User;

@@ -1,7 +1,7 @@
 package jeawoon.blogproject.api;
 
 
-import jeawoon.blogproject.Config.auth.PrincipalDetail;
+import jeawoon.blogproject.config.auth.PrincipalDetail;
 import jeawoon.blogproject.dto.ResponseDto;
 import jeawoon.blogproject.entity.Board;
 import jeawoon.blogproject.entity.Reply;

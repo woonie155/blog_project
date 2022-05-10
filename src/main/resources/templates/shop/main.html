@@ -12,18 +12,20 @@
 <div id="wrap">
     <div th:replace="fragments/navbar :: navbar" />
 
-    <h1>쇼핑 메인 화면</h1>
+    <h1 style="display:inline;">쇼핑 메인 화면 <h3 style="display:inline;">(아이템 목록을 나타내는 페이지)</h3></h1>
+    <br>
 
         <a style="display:inline;" class="nav-link" href="/shop/clothesSaveForm">1. 아이템 등록</a>
         <a style="display:inline;" class="nav-link" href="/shop/orderSaveForm">2. 주문하기</a>
         <a style="display:inline;" class="nav-link" href="/order_page">3. 주문목록</a>
-
+    <br><br>
     <div>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>번호</th>
                 <th>상품명</th>
+                <th>image</th>
                 <th>가격</th>
                 <th>재고수량</th>
                 <th></th>
@@ -33,6 +35,7 @@
             <tr th:each="item : ${items}">
                 <td th:text="${item.id}"></td>
                 <td th:text="${item.name}"></td>
+                <td><img th:each="imageFile : ${item.imageFiles}" th:src="|/images/${imageFile.getStoreFileName()}|" width="300" height="300"/></td>
                 <td th:text="${item.price}"></td>
                 <td th:text="${item.stockQuantity}"></td>
                 <td>

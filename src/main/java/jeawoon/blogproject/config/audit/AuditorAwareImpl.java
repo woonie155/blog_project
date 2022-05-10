@@ -1,4 +1,4 @@
-package jeawoon.blogproject.Config.audit;
+package jeawoon.blogproject.config.audit;
 
 
 import org.springframework.data.domain.AuditorAware;

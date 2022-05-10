@@ -21,6 +21,7 @@
             <th>주문 PK</th>
             <th>주문자 ID</th>
             <th>주문자 이름</th>
+            <th>주문 아이템</th>
             <th>주문 날짜</th>
             <th>주문 상태</th>
             <th>주소</th>
@@ -31,6 +32,9 @@
             <td th:text="*{orderId}"></td>
             <td th:text="*{loginId}"></td>
             <td th:text="*{username}"></td>
+            <td>
+                <span th:each="items : ${order.orderItems}" th:text="|${items.itemName}, |"></span>
+            </td>
             <td th:text="${#temporals.format(order.orderDate, 'yyyy-MM-dd HH:mm')}"></td>
             <td th:text="*{status}"></td>
             <td th:text="|*{address.address1} *{address.zipcode}, *{address.address2}|"></td>

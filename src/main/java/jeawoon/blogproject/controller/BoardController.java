@@ -1,9 +1,13 @@
 package jeawoon.blogproject.controller;
 
 
-import jeawoon.blogproject.Config.auth.PrincipalDetail;
+import jeawoon.blogproject.config.auth.PrincipalDetail;
+import jeawoon.blogproject.dto.order.OrderListExcludeItemDto;
+import jeawoon.blogproject.repository.ReplyRepository;
 import jeawoon.blogproject.service.BoardService;
+import jeawoon.blogproject.service.ReplyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class BoardController {
 
     private final BoardService boardService;
+    private final ReplyService replyService;
 
     @GetMapping("/board/main")
     public String main(Model model, @PageableDefault(size=3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){

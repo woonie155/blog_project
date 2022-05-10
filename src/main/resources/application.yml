@@ -50,7 +50,11 @@ spring:
 
 logging.level:
   org.hibernate.SQL: debug
-# org.hibernate.type: trace
+#  org.hibernate.type: trace
+
+#file.dir=C:/Users/nolan/OneDrive/바탕 화면/spring_project/file/
+file:
+  dir: C:/Users/nolan/OneDrive/바탕 화면/spring_project/blog-project/src/main/resources/static/
 
 jw:
   key: jw1234

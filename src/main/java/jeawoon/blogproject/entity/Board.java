@@ -8,6 +8,8 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -28,14 +30,20 @@ public class Board extends BaseEntity{
 //    @ColumnDefault("0")
     private int viewCount;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"board"})
     @OrderBy("id")
     private List<Reply> reply;
 
+    //
+    public Board (User user, String title, String content){
+        this.user=user;
+        this.title=title;
+        this.content=content;
+    }
 
 }

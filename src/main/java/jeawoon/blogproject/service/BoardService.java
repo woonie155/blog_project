@@ -1,7 +1,11 @@
 package jeawoon.blogproject.service;
 
 
+import jeawoon.blogproject.dto.board.BoardDetailDto;
+import jeawoon.blogproject.dto.board.BoardListDto;
+import jeawoon.blogproject.dto.order.OrderListExcludeItemDto;
 import jeawoon.blogproject.entity.Board;
+import jeawoon.blogproject.entity.Order;
 import jeawoon.blogproject.entity.Reply;
 import jeawoon.blogproject.entity.User;
 import jeawoon.blogproject.repository.BoardRepository;
@@ -31,15 +35,20 @@ public class BoardService {
         boardRepository.save(board);
     }
 
-    public Page<Board> post_list(Pageable pageable){
-        return boardRepository.findAll(pageable);
+    public Page<BoardListDto> post_list(Pageable pageable){
+        Page<Board> page = boardRepository.findBoardListBy(pageable);
+        return page.map(b -> new BoardListDto(b.getId(), b.getContent(), b.getTitle(), b.getUser(), b.getUser().getNickname()));
     }
 
-    public Board post_detail(long id){
-        return boardRepository.findById(id).orElseThrow(()->{
+
+    public BoardDetailDto post_detail(long id){
+        Board detail = boardRepository.findDetailById(id).orElseThrow(()->{
             return new IllegalArgumentException("해당 id에 매칭되는 board 없음");
         });
+        BoardDetailDto result = new BoardDetailDto(detail);
+        return result;
     }
+
 
     @Transactional
     public void post_delete(long id){

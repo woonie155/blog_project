@@ -16,9 +16,9 @@
             <input type=hidden th:id="boardId" th:value="${board.id}">
             <div>
                 글 번호: <span><i th:text="|${board.id},|"></i></span>
-                작성자: <span><i th:text="${board.user.username}"></i></span><br>
-                생성일: <span><i th:text="${board.createdDate}"></i></span><br>
-                수정일: <span><i th:text="${board.lastModifiedDate}"></i></span>
+                작성자: <span><i th:text="${board.username}"></i></span><br>
+                생성일: <span><i th:text="${{board.createdDate}}"></i></span><br>
+                수정일: <span><i th:text="${{board.lastModifiedDate}}"></i></span>
             </div>
 
             <hr>
@@ -31,9 +31,9 @@
             <div class="d-flex justify-content-end">
                 <span>
                     <button class="btn btn-secondary" onclick="history.back()">돌아가기</button>
-                    <a th:if="${#authentication.principal.user.id} == ${board.user.id}"
+                    <a th:if="${#authentication.principal.user.loginId} == ${board.loginId}"
                        th:href="@{/board/{id}/update(id=${board.id})}" class="btn btn-primary">수정</a>
-                    <button th:if="${#authentication.principal.user.id} == ${board.user.id}" id="btn-delete" class="btn btn-danger">삭제</button>
+                    <button th:if="${#authentication.principal.user.loginId} == ${board.loginId}" id="btn-delete" class="btn btn-danger">삭제</button>
                 </span>
             </div>
         </div>
@@ -41,23 +41,20 @@
         <div>
             <div class="card">
                 <div class="card-header">댓글 리스트</div>
-                <ul th:each="reply : ${board.reply}" id="reply--box" class="list-group">
+                <ul th:each="reply : ${board.replys}" id="reply--box" class="list-group">
                     <li class="list-group-item d-flex justify-content-between">
-                        <div th:text="${reply.content}"></div>
+                        <div th:text="${reply.r_content}"></div>
                         <div class="d-flex">
-                            <div th:text="|작성자 : ${reply.user.username}, &nbsp|" class="font-italic"></div>
-                            <span class="font-italic" th:if="${reply.createdDate == reply.lastModifiedDate}" th:text="|등록일: ${reply.createdDate}|"></span>
-                            <span class="font-italic" th:unless="${reply.createdDate == reply.lastModifiedDate}" th:text="|수정일: ${reply.lastModifiedDate}|"></span>
-
-                            <div id="add_reply_update_textform">
-
-                            </div>
-
-                            <button th:if="${#authentication.principal.user.id} == ${reply.user.id}"
-                                    th:onclick="|javascript:index.reply_update_form(${board.id}, ${reply.id})|" class="badge">수정</button>
-                            <button th:if="${#authentication.principal.user.id} == ${reply.user.id}"
-                                    th:onclick="|javascript:index.delete_reply(${board.id}, ${reply.id})|" class="badge">삭제</button>
+                            <div th:text="|작성자 : ${reply.r_username}, &nbsp|" class="font-italic"></div>
+                            <span class="font-italic" th:if="${reply.r_createdDate == reply.r_lastModifiedDate}" th:text="|등록일: ${{reply.r_createdDate}}|"></span>
+                            <span class="font-italic" th:unless="${reply.r_createdDate == reply.r_lastModifiedDate}" th:text="|수정일: ${{reply.r_lastModifiedDate}}|"></span>
                         </div>
+
+<!--                            <button th:if="${#authentication.principal.user.loginId} == ${reply.r_loginId}"-->
+<!--                                    th:onclick="|javascript:index.reply_update_form(${board.id}, ${reply.r_loginId})|"-->
+<!--                                    class="badge">수정</button>-->
+                            <button th:if="${#authentication.principal.user.loginId} == ${reply.r_loginId}"
+                                    th:onclick="javascript:index.delete_reply([[${board.id}]], [[${reply.r_id}]])" class="badge">삭제</button>
                     </li>
                 </ul>
             </div>

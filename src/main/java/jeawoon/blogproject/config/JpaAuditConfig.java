@@ -1,6 +1,6 @@
-package jeawoon.blogproject.Config;
+package jeawoon.blogproject.config;
 
-import jeawoon.blogproject.Config.audit.AuditorAwareImpl;
+import jeawoon.blogproject.config.audit.AuditorAwareImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;

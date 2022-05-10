@@ -46,7 +46,7 @@ public class OrderController {
     //
     @GetMapping("/order_page")
     public String orderList_Page(Model model, @PageableDefault(size = 2, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
-        model.addAttribute("lists", orderService.searchPageAll(pageable));
+        model.addAttribute("lists", orderService.searchPageAll2(pageable));
         return "shop/orderListForm";
     }
 

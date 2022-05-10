@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class OrderAllListDto {
 
     private Long orderId;
+    private String loginId;
     private String username;
     private LocalDateTime orderDate; //주문시간
     private OrderType status;
@@ -23,8 +24,10 @@ public class OrderAllListDto {
 
     public OrderAllListDto(Order order) {
         this.orderId = order.getId();
+        this.loginId = order.getUser().getLoginId();
         this.username = order.getUser().getUsername();
         this.orderDate = order.getOrderDate();
+        this.status=order.getStatus();
         this.address = order.getDelivery().getAddress();
         this.orderItems = order.getOrderItems().stream()
                 .map(o -> new OrderItemDto(o)).collect(Collectors.toList());

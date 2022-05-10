@@ -1,10 +1,11 @@
 package jeawoon.blogproject.entity.item;
 
-import jeawoon.blogproject.entity.RoleType;
+import jeawoon.blogproject.entity.file.ImageFiles;
 import jeawoon.blogproject.exception.NotEnoughStockException;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -23,6 +24,9 @@ public abstract class Item {
     private String name;
     private int price;
     private int stockQuantity;
+
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private List<ImageFiles> imageFiles; //
 
 
     //==비즈니스 로직==//
