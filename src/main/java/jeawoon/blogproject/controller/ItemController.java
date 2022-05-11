@@ -54,11 +54,11 @@ public class ItemController {
     }
 
 
-    @ResponseBody
-    @GetMapping("/images/{filename}")
-    public UrlResource downloadImage(@PathVariable String filename) throws MalformedURLException {
-        return new UrlResource("file:" + fileStore.getFullPath(filename)); //img태그 이미지파일용 경로
-    }
+//    @ResponseBody
+//    @GetMapping("/images/{filename}")
+//    public UrlResource downloadImage(@PathVariable String filename) throws MalformedURLException {
+//        return new UrlResource("file:" + fileStore.getFullPath(filename)); //img태그 이미지파일용 경로
+//    }
 
 
 }

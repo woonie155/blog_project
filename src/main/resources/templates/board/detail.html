@@ -24,10 +24,22 @@
             <hr>
 
             <div class="form-group">
+                <div>
+                    <img th:each="imageFile : ${board.attachFiles}"
+                         th:if="${imageFile.attachType.toString().equals('IMAGE')}"
+                         th:src="|/images/${imageFile.storeFileName}|" width="300" height="300" style="margin-right: 5px"/>
+                </div>
                 <div th:utext="${board.content}"></div>
             </div>
             <hr>
-
+            <br>
+            <div>
+                <a th:each="uploadFile : ${board.attachFiles}"
+                   th:if="${uploadFile.attachType.toString().equals('FILE')}"
+                   th:href="@{/attach/{filename}(filename=${uploadFile.storeFileName}, originName=${uploadFile.uploadFileName})}"
+                   th:text="${uploadFile.uploadFileName}" style="margin-right: 5px"/><br/>
+            </div>
+            <hr>
             <div class="d-flex justify-content-end">
                 <span>
                     <button class="btn btn-secondary" onclick="history.back()">돌아가기</button>

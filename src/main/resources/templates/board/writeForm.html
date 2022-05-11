@@ -9,18 +9,31 @@
     <div th:replace="fragments/navbar :: navbar" />
 
     <div class="container">
-        <form>
+        <form th:action method="post" enctype="multipart/form-data">
+            <input type=hidden id="id" th:name="id" th:value="${principal.id}">
+
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" name="title" class="form-control" placeholder="제목을 입력하세요." id="title">
             </div>
 
             <div class="form-group">
+                <label for="uploadFiles">파일 업로드 >></label>
+                <input type="file" multiple="multiple" name="uploadFiles" id="uploadFiles" >
+            </div>
+            <div class="form-group">
+                <label for="imageFiles">이미지 첨가하기>></label>
+                <input type="file" multiple="multiple" name="imageFiles" id="imageFiles" >
+            </div>
+
+            <div class="form-group">
                 <label for="content">내용</label>
                 <textarea class="form-control summernote" rows="5" id="content"></textarea>
             </div>
+            <input type="submit" value="작성하기(웹용)">
         </form>
-        <button id="btn-board-write" class="btn btn-primary">작성하기</button>
+        <br>
+        <button id="btn-board-write" class="btn btn-primary">작성하기(API용)</button>
     </div>
 </div>
 

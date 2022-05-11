@@ -14,6 +14,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+      use_sql_comments: true
     properties:
       hibernate:
         format_sql: true
@@ -52,9 +53,9 @@ logging.level:
   org.hibernate.SQL: debug
 #  org.hibernate.type: trace
 
-#file.dir=C:/Users/nolan/OneDrive/바탕 화면/spring_project/file/
+
 file:
-  dir: C:/Users/nolan/OneDrive/바탕 화면/spring_project/blog-project/src/main/resources/static/
+  dir: C:/Users/nolan/springfile/
 
 jw:
   key: jw1234

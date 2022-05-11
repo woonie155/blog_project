@@ -2,10 +2,14 @@ package jeawoon.blogproject.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jeawoon.blogproject.entity.file.AttachFile;
+import jeawoon.blogproject.entity.file.ImageFiles;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
@@ -27,6 +31,9 @@ public class Board extends BaseEntity{
     @Lob
     private String content;
 
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    private List<AttachFile> attachFiles = new ArrayList<>(); //
+
 //    @ColumnDefault("0")
     private int viewCount;
 
@@ -44,6 +51,16 @@ public class Board extends BaseEntity{
         this.user=user;
         this.title=title;
         this.content=content;
+    }
+    public Board (String title, String content, List<AttachFile> attachFiles){
+        this.title=title;
+        this.content=content;
+        this.attachFiles = attachFiles;
+    }
+
+    public void setAttachFile(AttachFile attachFile) {
+        this.attachFiles.add(attachFile);
+        attachFile.setBoard(this);
     }
 
 }

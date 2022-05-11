@@ -3,19 +3,24 @@ package jeawoon.blogproject.service;
 
 import jeawoon.blogproject.dto.board.BoardDetailDto;
 import jeawoon.blogproject.dto.board.BoardListDto;
+import jeawoon.blogproject.dto.board.PostWriteDto;
 import jeawoon.blogproject.dto.order.OrderListExcludeItemDto;
 import jeawoon.blogproject.entity.Board;
 import jeawoon.blogproject.entity.Order;
 import jeawoon.blogproject.entity.Reply;
 import jeawoon.blogproject.entity.User;
+import jeawoon.blogproject.entity.file.AttachFile;
 import jeawoon.blogproject.repository.BoardRepository;
 import jeawoon.blogproject.repository.ReplyRepository;
+import jeawoon.blogproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,13 +31,23 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
     private final ReplyRepository replyRepository;
-
+    private final UserRepository userRepository;
+    private final AttachService attachService;
 
     @Transactional
-    public void post_write(Board board, User user){
+    public Long post_write(PostWriteDto dto) throws IOException {
+        List<AttachFile> attachFiles = attachService.saveAttachments(dto.getAttachFiles()); //저장
+        Board board = new Board(dto.getTitle(), dto.getContent(), new ArrayList<>());
+
+        attachFiles.stream()
+                .forEach(af -> board.setAttachFile(af));
+        User user = userRepository.findById(dto.getId()).orElseThrow(()->{
+            return new IllegalArgumentException("해당 id에 매칭되는 사용자정보 없음");
+        });
         board.setUser(user);
         board.setViewCount(0);
-        boardRepository.save(board);
+        Board result = boardRepository.save(board);
+        return result.getId();
     }
 
     public Page<BoardListDto> post_list(Pageable pageable){
@@ -45,6 +60,7 @@ public class BoardService {
         Board detail = boardRepository.findDetailById(id).orElseThrow(()->{
             return new IllegalArgumentException("해당 id에 매칭되는 board 없음");
         });
+
         BoardDetailDto result = new BoardDetailDto(detail);
         return result;
     }

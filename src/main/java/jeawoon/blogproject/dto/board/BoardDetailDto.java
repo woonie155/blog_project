@@ -3,6 +3,7 @@ package jeawoon.blogproject.dto.board;
 
 import jeawoon.blogproject.entity.Board;
 import jeawoon.blogproject.entity.User;
+import jeawoon.blogproject.entity.file.AttachFile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,6 +33,7 @@ public class BoardDetailDto {
 
 
     private List<BoardReplyListDto> replys;
+    private List<AttachFileDto> attachFiles;
 
     public BoardDetailDto(Board board){
         this.id = board.getId();
@@ -44,6 +46,9 @@ public class BoardDetailDto {
 
         this.replys = board.getReply().stream()
                 .map(b -> new BoardReplyListDto(b)).collect(Collectors.toList());
+
+        this.attachFiles = board.getAttachFiles().stream()
+                .map(b -> new AttachFileDto(b)).collect(Collectors.toList());
     }
 
 
