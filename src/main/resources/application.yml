@@ -55,7 +55,7 @@ logging.level:
 
 
 file:
-  dir: C:/Users/nolan/springfile/
+  dir: C:/Users/nolan/springfile/.
 
 jw:
   key: jw1234
