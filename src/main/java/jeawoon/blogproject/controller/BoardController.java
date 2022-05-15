@@ -75,13 +75,12 @@ public class BoardController {
     @GetMapping("/images/{filename}")
     public Resource processImg(@PathVariable String filename) throws MalformedURLException {
         return new UrlResource("file:" + fileStore.getFullPath(filename, AttachType.IMAGE));
-    } //    fileStore.getFullPath=>  C:/Users/nolan/springfile/이미지폴더/파일명.확장자
+    }
 
     @GetMapping("/attach/{filename}")
-
     public ResponseEntity<Resource> processAttaches(@PathVariable String filename, @RequestParam String originName) throws MalformedURLException {
         UrlResource resource = new UrlResource("file:" + fileStore.getFullPath(filename, AttachType.FILE));
-        //    fileStore.getFullPath=>  C:/Users/nolan/springfile/업로드폴더/파일명.확장자
+        //    fileStore.getWebPath=>  uploadfiles/파일명.확장자
 
         String encodedUploadFileName = UriUtils.encode(originName, StandardCharsets.UTF_8);
         String contentDisposition = "attachment; filename=\"" + encodedUploadFileName + "\"";
