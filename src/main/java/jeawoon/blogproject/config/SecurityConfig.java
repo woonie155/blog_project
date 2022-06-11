@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 @RequiredArgsConstructor
 @Configuration
-@EnableWebSecurity //시큐리티 필터 추가 적용 (스프링 시큐리티는 이미 활성화중이지만)
+@EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) //권한 및 인증을 요청수행전 미리 체크.
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -64,11 +64,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .formLogin()
                     .usernameParameter("loginId")
                     .passwordParameter("password")
-                    .loginPage("/auth/login")
-                    .loginProcessingUrl("/auth/loginProc") //해당주소로 들어오는 값을 로그인 요청으로 보고 가로챔(post- x www form urlencoded형태)
-                    .defaultSuccessUrl("/")//로그인 정상 처리 될 시 이동(/는 원래이동하려했던 곳으로). (실패- failureUrl)
+                    .loginPage("/auth/login") //해당url은 '로그인페이지' 요청의미(컨트롤러쪽에 전송될것)
+                    .loginProcessingUrl("/auth/loginProc") //해당주소로 들어오는 값을 로그인 정보로 보고 가로챔(post- x www form urlencoded형태)
+                    .defaultSuccessUrl("/")//로그인 정상 처리 될 시 이동(/는 원래이동하려했던 곳으로)
                     .failureUrl("/auth/login?error=true")
                     .failureHandler(failureHandler())
+                //로그아웃은 디폴트값이용 /logout
                 .and()
                     .oauth2Login()
                     .loginPage("/auth/login")

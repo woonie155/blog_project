@@ -20,7 +20,7 @@ public class PrincipalDetail implements UserDetails, OAuth2User {
 
     public PrincipalDetail(User user) { //일반 로그인 시,
         this.user = user;
-    }
+    } //폼로그인 시,
     public PrincipalDetail(User user, Map<String, Object> attributes) { //OAuth 로그인 시,
         this.user = user;
         this.attributes = attributes;

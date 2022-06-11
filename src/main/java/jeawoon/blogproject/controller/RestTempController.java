@@ -1,8 +1,10 @@
 package jeawoon.blogproject.controller;
 
 import jeawoon.blogproject.entity.RoleType;
+import jeawoon.blogproject.entity.Tmp;
 import jeawoon.blogproject.entity.User;
 import jeawoon.blogproject.repository.UserRepository;
+import jeawoon.blogproject.service.TmpService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
@@ -12,6 +14,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -22,6 +26,7 @@ import java.util.function.Supplier;
 public class RestTempController {
 
     private final UserRepository userRepository;
+    private final TmpService tmpService;
 
     @PostMapping("/test/join")
     public String join(User user){ //폼태그 방식과 동일
@@ -73,5 +78,6 @@ public class RestTempController {
         }
         return "삭제완료";
     }
+
 
 }

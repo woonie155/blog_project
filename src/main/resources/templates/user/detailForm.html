@@ -41,7 +41,7 @@
             <div class="d-flex justify-content-end">
                 <span>
                     <button class="btn btn-secondary" onclick="history.back()">돌아가기</button>
-                    <button th:if="${#strings.isEmpty(principal.provider)}" id="btn-update" class="btn btn-primary">수정하기</button>
+                    <button th:if="${#strings.isEmpty(principal.provider)}" id="btn-update" class="btn btn-primary">수정하기</button><!--일반로그인 사용자-->
                     <button th:unless="${#strings.isEmpty(principal.provider)}" id="btn-update2" class="btn btn-primary">수정하기</button>
                     <button id="btn-delete" class="btn btn-danger">탈퇴하기</button>
                 </span>

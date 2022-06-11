@@ -26,7 +26,7 @@ public class AttachFile {
     private String storeFileName; //서버에 저장. 중복이름 고려
 
     @Enumerated(EnumType.STRING)
-    private AttachType attachType; //주문상태 [ORDER, CANCEL]
+    private AttachType attachType;
 
     @ManyToOne(fetch = LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "board_id")
